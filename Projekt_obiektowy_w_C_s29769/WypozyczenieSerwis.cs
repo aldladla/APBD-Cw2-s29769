@@ -69,7 +69,7 @@ public class WypozyczalniaSerwis
         znalezionySprzet.Status = StatusDostepnosci.Wypozyczony;
     }
 
-    public void ZwrocSprzet(Guid sprzetId)
+    public decimal ZwrocSprzet(Guid sprzetId)
     {
         Wypozyczenie doZwrotu = null;
         foreach (var w in _wypozyczenia)
@@ -96,9 +96,12 @@ public class WypozyczalniaSerwis
                 if (dniSpoznienia > 0)
                 {
                     doZwrotu.KaraZaOpoznienie = dniSpoznienia * 10; 
+                    return doZwrotu.KaraZaOpoznienie;
                 }
             }
         }
+
+        return 0;
     }
 
     public void OznaczUszkodzony(Guid sprzetId)
